@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	user32              = syscall.NewLazyDLL("user32.dll")
-	getCursorPos        = user32.NewProc("GetCursorPos")
-	setCursorPos        = user32.NewProc("SetCursorPos")
+	user32       = syscall.MustLoadDLL("user32.dll")
+	getCursorPos = user32.MustFindProc("GetCursorPos")
+	setCursorPos = user32.MustFindProc("SetCursorPos")
 )
 
 type POINT struct {
@@ -37,7 +37,8 @@ func setMousePos(x, y int32) error {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	// 使用更稳定的随机数初始化方式
+	rand.Seed(time.Now().Unix())
 	fmt.Println("鼠标自动移动工具已启动...")
 
 	for {
