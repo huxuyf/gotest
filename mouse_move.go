@@ -44,7 +44,7 @@ func main() {
 	for {
 		x, y, err := getMousePos()
 		if err != nil {
-			//fmt.Println("获取鼠标位置失败:", err)
+			fmt.Println("获取鼠标位置失败:", err)
 			continue
 		}
 
@@ -57,13 +57,13 @@ func main() {
 
 		err = setMousePos(newX, newY)
 		if err != nil {
-			//fmt.Println("移动鼠标失败:", err)
+			fmt.Println("移动鼠标失败:", err)
 		} else {
-			//fmt.Printf("鼠标已移动到：(%d, %d)\n", newX, newY)
+			fmt.Printf("鼠标已移动到：(%d, %d)\n", newX, newY)
 		}
 
 		sleepSeconds := 10 + rand.Intn(21) // 10~30秒
-		//fmt.Printf("等待 %d 秒后再次移动...\n", sleepSeconds)
+		fmt.Printf("等待 %d 秒后再次移动...\n", sleepSeconds)
 		time.Sleep(time.Duration(sleepSeconds) * time.Second)
 	}
 }
